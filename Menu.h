@@ -5,9 +5,7 @@
 #include "MenuOption.h"
 #include <conio.h>
 #include <iostream>
-//#include <chrono>
-#include <vector>
-#include <algorithm>
+
 
 
 constexpr auto KEY_UP = 72;
@@ -19,28 +17,13 @@ constexpr auto KEY_ESCAPE = 27;
 class Menu
 {
 public:
-    /**
-     * @brief Construct a new Menu object
-     * 
-     */
+
     Menu() = default;
 
-    /**
-     * @brief Construct a new Menu object
-     * 
-     */
     Menu(std::vector<MenuOption>);
     
-    /**
-     * @brief desplazar por coordenada
-     * 
-     */
     void navigation();
     
-    /**
-     * @brief mostrar en pantalla
-     * 
-     */
     void display(size_t);
 
     bool usarMouse(size_t*);

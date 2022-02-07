@@ -1,7 +1,5 @@
 ﻿#include "Application.h"
-#include <iostream>
-#include <windows.h>
-#include <thread>
+
 
 int Application::run()
 {
@@ -28,6 +26,9 @@ void Application::init()
 
 void Application::exit_program()
 {
+    system("cls");
+    std::cout << "\n\nHasta la proxima";
+    Sleep(500);
     exit(0);
 }
 

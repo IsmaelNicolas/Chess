@@ -1,8 +1,6 @@
 ﻿#include "Menu.h"
 #include"Application.h"
 
-
-
 #pragma comment(lib, "kernel32.lib")
 #pragma comment(lib, "user32.lib")
 
@@ -133,26 +131,6 @@ bool Menu::usarMouse(size_t* i) {
             }
             return false;
             
-            /*if ((cursor_pos.x >= 360 && cursor_pos.x <= 570) && (cursor_pos.y >= 210 && cursor_pos.y <= 240))
-            {
-                *i = 1;
-                display(*i);
-            }
-            if ((cursor_pos.x >= 360 && cursor_pos.x <= 570) && (cursor_pos.y >= 240 && cursor_pos.y <= 260))
-            {
-                *i = 2;
-                display(*i);
-            }
-            if ((cursor_pos.x >= 360 && cursor_pos.x <= 570) && (cursor_pos.y >= 260 && cursor_pos.y <= 290))
-            {
-                *i = 3;
-                display(*i);
-            }
-            if ((cursor_pos.x >= 360 && cursor_pos.x <= 570) && (cursor_pos.y >= 290 && cursor_pos.y <= 310))
-            {
-                *i = 4;
-                display(*i);
-            }*/
             
         }
     }
