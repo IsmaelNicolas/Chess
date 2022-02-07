@@ -9,7 +9,6 @@ int main()
     GetWindowRect(console_wnd, &ConsoleRect);
 
 
-
     MoveWindow(console_wnd,
         ConsoleRect.left,
         ConsoleRect.top,

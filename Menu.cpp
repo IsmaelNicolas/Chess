@@ -1,11 +1,10 @@
 ﻿#include "Menu.h"
 #include"Application.h"
-#include <thread>
-#include <math.h>
+
+
 
 #pragma comment(lib, "kernel32.lib")
 #pragma comment(lib, "user32.lib")
-
 
 
 Menu::Menu(std::vector<MenuOption> options) : menu_option_(options)
@@ -22,6 +21,24 @@ void Menu::navigation()
     if (menu_option_.empty()) {
         return;
     }
+        //Si todo sale bien no hay que cambiar la posicion de la esquina de la primera caja
+    const int ESQUINA = 216;
+    const int ANCHO = 23;
+    
+    for (size_t i = 0,j; i < menu_option_.size(); i++,j++)
+    {
+        if (i == 0) {
+            cajitas.push_back(ESQUINA);
+            cajitas.push_back(ESQUINA + ANCHO);
+            j = 1;
+        }
+        else {
+            cajitas.push_back(cajitas.at(j-1) + 1);
+            cajitas.push_back(cajitas.at(j) +  ANCHO);
+            j++;
+        }
+    }
+
 
     display(1);
     size_t i{ 1 };
@@ -29,19 +46,19 @@ void Menu::navigation()
     while (1)
     {
         if (GetAsyncKeyState(VK_END)) { break; }
-        
+
         usarMouse(&i);
 
         if (_kbhit())
         {
             Sleep(50);
             if (isKeyDown(VK_DOWN)) {
-                i = (i < menu_option_.size() ) ? i+=1 : i= menu_option_.size();
+                i = (i < menu_option_.size()) ? i += 1 : i = menu_option_.size();
                 display(i);
             }
-            else if (isKeyDown(VK_UP)) 
+            else if (isKeyDown(VK_UP))
             {
-                i = (i > 1) ? i -= 1 : i =1;
+                i = (i > 1) ? i -= 1 : i = 1;
                 display(i);
 
             }
@@ -60,6 +77,7 @@ void Menu::navigation()
 
 void Menu::display(size_t option)
 {
+
     system("cls");
     unsigned int i = 0;
     SetConsoleCursorPosition(console_, { 32,7 });
@@ -93,7 +111,6 @@ void Menu::usarMouse(size_t* i) {
             std::wstring t = std::to_wstring(cursor_pos.x) + L"-" + std::to_wstring(cursor_pos.y);
             SetConsoleTitle(t.c_str());
 
-
             /*auto f = [](int x) {return (int)(-1.6667*pow(x,4) + 13.3335 * pow(x,3) - 33.3336 * pow(x,2) + 51.6668 * x + 210); };
 
             if ((cursor_pos.x>=360 && cursor_pos.x <= 570) && (cursor_pos.y >= f(i) && cursor_pos.y <= f(i+1))) {
@@ -101,7 +118,17 @@ void Menu::usarMouse(size_t* i) {
                 std::cout << i<<std::endl;
             }*/
 
-            if ((cursor_pos.x >= 360 && cursor_pos.x <= 570) && (cursor_pos.y >= 210 && cursor_pos.y <= 240))
+
+            for (size_t i = 0; i < cajitas.size(); i+=2)
+            {
+                cursor_pos.y;
+                if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1)) {
+                    Sleep(250);
+                    display((i/2)+1);
+                }
+            }
+            
+            /*if ((cursor_pos.x >= 360 && cursor_pos.x <= 570) && (cursor_pos.y >= 210 && cursor_pos.y <= 240))
             {
                 *i = 1;
                 display(*i);
@@ -120,9 +147,10 @@ void Menu::usarMouse(size_t* i) {
             {
                 *i = 4;
                 display(*i);
-            }
-
+            }*/
+            
         }
     }
 
 }
+

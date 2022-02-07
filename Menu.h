@@ -5,6 +5,10 @@
 #include "MenuOption.h"
 #include <conio.h>
 #include <iostream>
+//#include <chrono>
+#include <vector>
+#include <algorithm>
+
 
 constexpr auto KEY_UP = 72;
 constexpr auto KEY_DOWN = 80;
@@ -41,11 +45,13 @@ public:
 
     void usarMouse(size_t*);
 
+
 private:
     std::vector<MenuOption> menu_option_;
     HANDLE console_;
     HWND console_wnd = GetConsoleWindow();
     POINT cursor_pos;
+    std::vector<int> cajitas;
 };
 
 
