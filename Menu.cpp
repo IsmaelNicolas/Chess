@@ -6,11 +6,23 @@
 #pragma comment(lib, "kernel32.lib")
 #pragma comment(lib, "user32.lib")
 
-
+void setcursor(bool visible, DWORD size) // set bool visible = 0 - invisible, bool visible = 1 - visible
+{
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (size == 0)
+    {
+        size = 20;	// default cursor size Changing to numbers from 1 to 20, decreases cursor width
+    }
+    CONSOLE_CURSOR_INFO lpCursor;
+    lpCursor.bVisible = visible;
+    lpCursor.dwSize = size;
+    SetConsoleCursorInfo(console, &lpCursor);
+}
 
 Menu::Menu(std::vector<MenuOption> options) : menu_option_(options)
 {
     console_ = GetStdHandle(STD_OUTPUT_HANDLE);
+    setcursor(0, 10);
 }
 
 bool isKeyDown(int vkey) {
@@ -57,6 +69,8 @@ void Menu::navigation()
         }
     }
 }
+
+
 
 void Menu::display(size_t option)
 {
