@@ -47,7 +47,7 @@ void Menu::navigation()
     {
         if (GetAsyncKeyState(VK_END)) { break; }
 
-        usarMouse(&i);
+        if (usarMouse(&i)) return;
 
         if (_kbhit())
         {
@@ -65,7 +65,7 @@ void Menu::navigation()
             else if (isKeyDown(VK_RETURN)) {
                 system("cls");
                 menu_option_.at(i - 1).get_fuction()();
-                display(i);
+                break;
             }
             else if (isKeyDown(VK_END))
             {
@@ -101,7 +101,7 @@ void Menu::display(size_t option)
     }
 }
 
-void Menu::usarMouse(size_t* i) {
+bool Menu::usarMouse(size_t* i) {
 
            
     if (GetCursorPos(&cursor_pos))
@@ -125,8 +125,13 @@ void Menu::usarMouse(size_t* i) {
                 if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1)) {
                     Sleep(250);
                     display((i/2)+1);
+                    if (GetAsyncKeyState(VK_RBUTTON)) {
+                        menu_option_.at(((i / 2) + 1)-1).get_fuction()();
+                        return true;
+                    }
                 }
             }
+            return false;
             
             /*if ((cursor_pos.x >= 360 && cursor_pos.x <= 570) && (cursor_pos.y >= 210 && cursor_pos.y <= 240))
             {

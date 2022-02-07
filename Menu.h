@@ -43,7 +43,7 @@ public:
      */
     void display(size_t);
 
-    void usarMouse(size_t*);
+    bool usarMouse(size_t*);
 
 
 private:
