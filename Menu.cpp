@@ -58,7 +58,6 @@ void Menu::navigation()
             {
                 i = (i > 1) ? i -= 1 : i = 1;
                 display(i);
-
             }
             else if (isKeyDown(VK_RETURN)) {
                 system("cls");
@@ -113,7 +112,6 @@ bool Menu::usarMouse(size_t* i) {
 
             for (size_t i = 0; i < cajitas.size(); i+=2)
             {
-                cursor_pos.y;
                 if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1)) {
                     Sleep(50);
                     display((i/2)+1);
@@ -124,8 +122,6 @@ bool Menu::usarMouse(size_t* i) {
                 }
             }
             return false;
-            
-            
         }
     }
 
