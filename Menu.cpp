@@ -58,7 +58,6 @@ void Menu::navigation()
             {
                 i = (i > 1) ? i -= 1 : i = 1;
                 display(i);
-
             }
             else if (isKeyDown(VK_RETURN)) {
                 system("cls");
@@ -109,17 +108,8 @@ bool Menu::usarMouse(size_t* i) {
             std::wstring t = std::to_wstring(cursor_pos.x) + L"-" + std::to_wstring(cursor_pos.y);
             SetConsoleTitle(t.c_str());
 
-            /*auto f = [](int x) {return (int)(-1.6667*pow(x,4) + 13.3335 * pow(x,3) - 33.3336 * pow(x,2) + 51.6668 * x + 210); };
-
-            if ((cursor_pos.x>=360 && cursor_pos.x <= 570) && (cursor_pos.y >= f(i) && cursor_pos.y <= f(i+1))) {
-                display(i);
-                std::cout << i<<std::endl;
-            }*/
-
-
             for (size_t i = 0; i < cajitas.size(); i+=2)
             {
-                cursor_pos.y;
                 if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1)) {
                     Sleep(250);
                     display((i/2)+1);
@@ -130,8 +120,6 @@ bool Menu::usarMouse(size_t* i) {
                 }
             }
             return false;
-            
-            
         }
     }
 
