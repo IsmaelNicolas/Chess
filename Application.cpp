@@ -49,18 +49,6 @@ void Application::OPC3()
     std::vector<MenuOption> menu_item
     {
         {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
-        {1, "Opcion 4", OPC4},
         {2, "SALIR", exit_program}
     };
 
