@@ -4,10 +4,10 @@
 #pragma comment(lib, "kernel32.lib")
 #pragma comment(lib, "user32.lib")
 
-
 Menu::Menu(std::vector<MenuOption> options) : menu_option_(options)
 {
     console_ = GetStdHandle(STD_OUTPUT_HANDLE);
+    //setcursor(0, 10);
 }
 
 bool isKeyDown(int vkey) {
@@ -72,6 +72,8 @@ void Menu::navigation()
     }
 }
 
+
+
 void Menu::display(size_t option)
 {
 
@@ -111,7 +113,9 @@ bool Menu::usarMouse(size_t* i) {
             for (size_t i = 0; i < cajitas.size(); i+=2)
             {
                 if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1)) {
+
                     Sleep(500);
+                    Sleep(50);
                     display((i/2)+1);
                     if (GetAsyncKeyState(VK_RBUTTON)) {
                         menu_option_.at(((i / 2) + 1)-1).get_fuction()();
