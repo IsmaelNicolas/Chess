@@ -1,15 +1,13 @@
 ﻿#pragma once
-#include <vector>
-#include <iostream>
 #include "MenuOption.h"
 #include "Menu.h"
+#include <vector>
+#include <iostream>
 #include <iomanip>
 #include <sstream>
 class Application
 {
 private:
-
-	//Agregar funciones del menu
 
 	static void init();
 
