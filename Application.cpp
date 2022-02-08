@@ -1,13 +1,16 @@
 ﻿#include "Application.h"
 
+
 int Application::run()
 {
     init();
+
     return 0;
 }
 
 void Application::init()
 {
+
     std::vector<MenuOption> menu_item
     {
         {1, "Jugar", OPC1},
@@ -39,8 +42,13 @@ void Application::OPC1() {
 void Application::OPC2()
 {
     system("cls");
-    std::cout << "opcion 2" << std::endl;
-    system("pause");
+    std::cout << "\n\n\topcion 2" << std::endl;
+    //char aa;
+    //std::cin.ignore();
+
+    //std::cin >> aa;
+    //std::cout << aa;
+    //system("pause");
     init();
 }
 

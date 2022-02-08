@@ -17,6 +17,7 @@ private:
 
 public:
 
+	Application() {};
 	static void OPC1();
 	static void OPC2();
 	static void OPC3();
