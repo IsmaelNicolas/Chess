@@ -1,5 +1,6 @@
 ﻿#include "Application.h"
 #include "Marquee1.h"
+#include <Windows.h>
 
 int Application::run()
 {
@@ -15,9 +16,8 @@ void Application::init()
     std::vector<MenuOption> menu_item
     {
         {1, "Jugar", OPC1},
-        {2, "Configuraciones", OPC2},
-        {3, "OPCION 3", OPC3},
-        {4, "SALIR", exit_program}
+        {2, "Configuraciones", OPC3},
+        {3, "SALIR", exit_program}
     };
 
     Menu menu{ menu_item };
@@ -25,9 +25,10 @@ void Application::init()
     
 }
 
+
 void Application::exit_program()
 {
-    system("cls");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "\n\nHasta la proxima\n\n";
     Sleep(500);
     exit(0);
@@ -35,7 +36,7 @@ void Application::exit_program()
 
 void Application::OPC1() {
 
-    system("cls");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "Opc1"<<std::endl;
     system("pause");
 
@@ -45,7 +46,7 @@ void Application::OPC1() {
 
 void Application::OPC2()
 {
-    system("cls");
+    std::cout << "\x1B[2J\x1B[H";
     std::cout << "\n\n\topcion 2" << std::endl;
     //char aa;
     //std::cin.ignore();
@@ -60,7 +61,8 @@ void Application::OPC3()
 {
     std::vector<MenuOption> menu_item
     {
-        {1, "Opcion 4", OPC4},
+        {1, "Crear Backup", OPC4},
+        {1, "Restaurar Backup", OPC2},
         {2, "SALIR", exit_program}
     };
 

@@ -75,10 +75,11 @@ namespace Marquee
         }
     }
 
+
     void Marquee::marquee(std::string mensaje)
     {
         std::string logo = mensaje;
-        int velocidad = 600;
+        int velocidad = 100;
         Sleep(600);
         cursorHide();
         int stringSize = logo.length();
@@ -90,7 +91,6 @@ namespace Marquee
             printToCoordinates(0, 0, msg);
             Sleep(velocidad);
             if (GetAsyncKeyState(VK_ESCAPE)) {
-                Sleep(50);
                 ciclo = false;
                 break;
             }
