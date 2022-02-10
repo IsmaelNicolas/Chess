@@ -34,13 +34,42 @@ void Application::exit_program()
 }
 
 void Application::OPC1() {
-
+    estop();
     system("cls");
-    std::cout << "Opc1"<<std::endl;
-    system("pause");
 
-    init();
     
+    CPartida prueba;
+    prueba.ejecutarPartida();
+    
+    
+
+    //init();
+    //std::string a;
+    //std::cin >> a;
+    //std::cout << a;
+    //system("pause");
+    init();
+}
+
+/*PRESIONA TECLA ALT PARA DETENER MARQUESINA*/
+void Application::estop()
+{
+    INPUT ip;
+
+    // Set up a generic keyboard event.
+    ip.type = INPUT_KEYBOARD;
+    ip.ki.wScan = 0; // hardware scan code for key
+    ip.ki.time = 0;
+    ip.ki.dwExtraInfo = 0;
+
+    // Press the "A" key
+    ip.ki.wVk = 0x1B; // virtual-key code for the "a" key
+    ip.ki.dwFlags = 0; // 0 for key press
+    SendInput(1, &ip, sizeof(INPUT));
+
+    // Release the "A" key
+    ip.ki.dwFlags = KEYEVENTF_KEYUP; // KEYEVENTF_KEYUP for key release
+    SendInput(1, &ip, sizeof(INPUT));
 }
 
 void Application::OPC2()

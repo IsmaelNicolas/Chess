@@ -20,12 +20,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="CPartida.h" />
+    <ClInclude Include="CPieza.h" />
+    <ClInclude Include="CPieza_Hijas.h" />
+    <ClInclude Include="CTabla.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="Marquee1.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuOption.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="CPartida.cpp" />
+    <ClCompile Include="CPieza.cpp" />
+    <ClCompile Include="CPieza_Hijas.cpp" />
+    <ClCompile Include="CTabla.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuOption.cpp" />

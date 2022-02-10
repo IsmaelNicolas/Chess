@@ -93,6 +93,7 @@ namespace Marquee
                 Sleep(50);
                 ciclo = false;
                 break;
+                
             }
         }
     }
@@ -101,8 +102,6 @@ namespace Marquee
     {
         //Application ap;
         //std::thread t2(&ap.run);
-
-
         COORD cord;
         cord = GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE));
         marquee(mensaje);

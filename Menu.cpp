@@ -112,7 +112,7 @@ bool Menu::usarMouse(size_t* i) {
 
             for (size_t i = 0; i < cajitas.size(); i+=2)
             {
-                if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1)) {
+                if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1) && cursor_pos.x >= 351 && cursor_pos.x <= 560 ) {
 
                     Sleep(500);
                     Sleep(50);
