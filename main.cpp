@@ -1,8 +1,7 @@
 #include "Application.h"
 #include <Windows.h>
 #include<iostream>
-#include "Marquee1.h"
-#include <thread>
+
 
 int main()
 {
@@ -28,12 +27,7 @@ int main()
 	MoveWindow(console_wnd,ConsoleRect.left,ConsoleRect.top,900, 600, TRUE);
 
 
-	/*
-	Marquee mark1(" THEOOOOOOOOOOOOOOOOOOO ");
-	mark1.transicion();
 	
-	*/
-
 
 	return Application::run();
 }

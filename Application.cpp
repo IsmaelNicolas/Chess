@@ -1,5 +1,5 @@
 ﻿#include "Application.h"
-
+#include "Marquee1.h"
 
 int Application::run()
 {
@@ -10,7 +10,8 @@ int Application::run()
 
 void Application::init()
 {
-
+    std::thread t1(Marquee::Marquee::transicion, "Imprimete carajo");
+    std::cout << "opcion 1" << std::endl;
     std::vector<MenuOption> menu_item
     {
         {1, "Jugar", OPC1},
@@ -33,10 +34,13 @@ void Application::exit_program()
 }
 
 void Application::OPC1() {
+
     system("cls");
-    std::cout << "opcion 1" << std::endl;
+    std::cout << "Opc1"<<std::endl;
     system("pause");
+
     init();
+    
 }
 
 void Application::OPC2()
@@ -48,7 +52,7 @@ void Application::OPC2()
 
     //std::cin >> aa;
     //std::cout << aa;
-    //system("pause");
+    system("pause");
     init();
 }
 
