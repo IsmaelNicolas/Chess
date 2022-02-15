@@ -115,7 +115,6 @@ bool Menu::usarMouse(size_t* i) {
                 if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1) && cursor_pos.x >= 351 && cursor_pos.x <= 560 ) {
 
                     Sleep(500);
-                    Sleep(50);
                     display((i/2)+1);
                     if (GetAsyncKeyState(VK_RBUTTON)) {
                         menu_option_.at(((i / 2) + 1)-1).get_fuction()();

@@ -23,11 +23,9 @@ private:
 public:
 
 	Application() {};
-	static void OPC1();
+	static void nuevoJuego();
 	static void estop();
-	static void OPC2();
-	static void OPC3();
-	static void OPC4();
+	static void cargarBackup();
 	static int run();
 	
 };

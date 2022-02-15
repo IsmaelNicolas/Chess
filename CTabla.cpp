@@ -1,41 +1,41 @@
 #include "CTabla.h"
 
-CTabla::CTabla() : tamX{X},tamY{Y}, numPiezas{32} {
+CTabla::CTabla() : tamX{ X }, tamY{ Y }, numPiezas{ 32 }{
     // Crear el array dinamico de punteros a CPieza
     //puntero a CPieza permite trabajar diferentes clases hijas como si fueran las mismas 
     //polimorfismo -> CPieza* ->Variable polimorfica
-    listaPiezas = new CPieza*[numPiezas];
+    listaPiezas = new CPieza * [numPiezas];
 
     // Insertar las torres en la lista
-    listaPiezas[0] = new CTorre(0,0,'B');
-    listaPiezas[1] = new CTorre(0,7,'B');
-    listaPiezas[2] = new CTorre(7,0,'N');
-    listaPiezas[3] = new CTorre(7,7,'N');
+    listaPiezas[0] = new CTorre(0, 0, 'B');
+    listaPiezas[1] = new CTorre(0, 7, 'B');
+    listaPiezas[2] = new CTorre(7, 0, 'N');
+    listaPiezas[3] = new CTorre(7, 7, 'N');
 
     // Insertar los caballos en la lista
-    listaPiezas[4] = new CCaballo(0,1,'B');
-    listaPiezas[5] = new CCaballo(0,6,'B');
-    listaPiezas[6] = new CCaballo(7,1,'N');
-    listaPiezas[7] = new CCaballo(7,6,'N');
+    listaPiezas[4] = new CCaballo(0, 1, 'B');
+    listaPiezas[5] = new CCaballo(0, 6, 'B');
+    listaPiezas[6] = new CCaballo(7, 1, 'N');
+    listaPiezas[7] = new CCaballo(7, 6, 'N');
 
     // Insertar los alfiles en la lista
-    listaPiezas[8] = new CAlfil(0,2,'B');
-    listaPiezas[9] = new CAlfil(0,5,'B');
-    listaPiezas[10] = new CAlfil(7,2,'N');
-    listaPiezas[11] = new CAlfil(7,5,'N');
+    listaPiezas[8] = new CAlfil(0, 2, 'B');
+    listaPiezas[9] = new CAlfil(0, 5, 'B');
+    listaPiezas[10] = new CAlfil(7, 2, 'N');
+    listaPiezas[11] = new CAlfil(7, 5, 'N');
 
     // Insertar las reinas en la lista
-    listaPiezas[12] = new CReina(0,3,'B');
-    listaPiezas[13] = new CReina(7,3,'N');
+    listaPiezas[12] = new CReina(0, 3, 'B');
+    listaPiezas[13] = new CReina(7, 3, 'N');
 
     // Insertar los reyes en la lista
-    listaPiezas[14] = new CRey(0,4,'B');
-    listaPiezas[15] = new CRey(7,4,'N');
+    listaPiezas[14] = new CRey(0, 4, 'B');
+    listaPiezas[15] = new CRey(7, 4, 'N');
 
     // Insertar los peones en la lista
-    for(int i=0; i<tamX; i++) {
-        listaPiezas[16+2*i] = new CPeon(1,i,'B');
-        listaPiezas[17+2*i] = new CPeon(6,i,'N');
+    for (int i = 0; i < tamX; i++) {
+        listaPiezas[16 + 2 * i] = new CPeon(1, i, 'B');
+        listaPiezas[17 + 2 * i] = new CPeon(6, i, 'N');
     }
 }
 
@@ -63,15 +63,15 @@ void CTabla::imprimirTabla() {
         // Parte separadora
         cout << endl << string(2,' ');
         for(int j=0; j<tamX; j++){
-            cout << setfill('-') << setw(5) << left << '+';
+            cout << std::setfill('-') << std::setw(5) << std::left << '+';
         }
         cout << '+' << endl;
 
         // Parte de las casillas
-        cout << setfill(' ') << setw(2) << left << i+1;
+        cout << std::setfill(' ') << std::setw(2) << std::left << i+1;
         for(int j=0; j<tamX; j++){
-            cout << setfill(' ') << setw(2) << left << '|';
-            cout << setfill(' ') << setw(3) << left << tabla[i][j];
+            cout << std::setfill(' ') << std::setw(2) << std::left << '|';
+            cout << std::setfill(' ') << std::setw(3) << std::left << tabla[i][j];
         }
         cout << '|';
     }
@@ -79,14 +79,14 @@ void CTabla::imprimirTabla() {
     // - Ultima linea separadora.
     cout << endl << string(2,' ');
     for(int i=0; i<tamX; i++){
-        cout << setfill('-') << setw(5) << left << '+';
+        cout << std::setfill('-') << std::setw(5) << std::left << '+';
     }
     cout << '+';
     //  - Linea de letras
     cout <<  endl;
     cout << string(2,' ');
     for(int i=0; i<tamX; i++){
-        cout << setfill(' ') << setw(5) << left << char('A'+i);
+        cout << std::setfill(' ') << std::setw(5) << std::left << char('A'+i);
     }
     cout << ' ' << endl;
 }
@@ -145,3 +145,5 @@ bool CTabla::moverPieza(int y1, int x1, int y2, int x2, bool turno) {
     casillaInicio->setPosX(x2);
     return true;
 }
+
+

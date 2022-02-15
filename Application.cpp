@@ -4,20 +4,17 @@
 int Application::run()
 {
     init();
-
     return 0;
 }
 
 void Application::init()
 {
-    std::thread t1(Marquee::Marquee::transicion, "Imprimete carajo");
-    std::cout << "opcion 1" << std::endl;
+    std::thread t1(Marquee::Marquee::transicion, " Hello There ");
     std::vector<MenuOption> menu_item
     {
-        {1, "Jugar", OPC1},
-        {2, "Configuraciones", OPC2},
-        {3, "OPCION 3", OPC3},
-        {4, "SALIR", exit_program}
+        {1, "Partida Nueva", nuevoJuego},
+        {2, "Cargar Backup", cargarBackup},
+        {3, "SALIR", exit_program}
     };
 
     Menu menu{ menu_item };
@@ -27,33 +24,38 @@ void Application::init()
 
 void Application::exit_program()
 {
+    
     system("cls");
     std::cout << "\n\nHasta la proxima\n\n";
-    Sleep(500);
+    Sleep(800);
     exit(0);
 }
 
-void Application::OPC1() {
+void Application::nuevoJuego() {
     estop();
+    system("pause");
     system("cls");
-
     
     CPartida prueba;
     prueba.ejecutarPartida();
-    
-    
 
-    //init();
-    //std::string a;
-    //std::cin >> a;
-    //std::cout << a;
-    //system("pause");
     init();
 }
 
-/*PRESIONA TECLA ALT PARA DETENER MARQUESINA*/
+void Application::cargarBackup()
+{
+    estop();
+    system("pause");
+    system("cls");
+    CPartida back;
+    back.cargarBackup();
+    back.ejecutarPartida();
+    init();
+}
+
 void Application::estop()
 {
+/*PRESIONA TECLA ALT PARA DETENER MARQUESINA*/
     INPUT ip;
 
     // Set up a generic keyboard event.
@@ -72,35 +74,4 @@ void Application::estop()
     SendInput(1, &ip, sizeof(INPUT));
 }
 
-void Application::OPC2()
-{
-    system("cls");
-    std::cout << "\n\n\topcion 2" << std::endl;
-    //char aa;
-    //std::cin.ignore();
 
-    //std::cin >> aa;
-    //std::cout << aa;
-    system("pause");
-    init();
-}
-
-void Application::OPC3()
-{
-    std::vector<MenuOption> menu_item
-    {
-        {1, "Opcion 4", OPC4},
-        {2, "SALIR", exit_program}
-    };
-
-    Menu menu{ menu_item };
-    menu.navigation();
-}
-
-void Application::OPC4()
-{
-    system("cls");
-    std::cout << "opcion 4" << std::endl;
-    system("pause");
-    init();
-}

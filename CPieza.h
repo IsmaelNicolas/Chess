@@ -8,7 +8,7 @@ protected:
     int posX;
     int posY;
     char color;
-    string icono;
+    std::string icono;
 public:
     CPieza();
     CPieza(int y, int x, char c);
@@ -18,7 +18,7 @@ public:
     int getPosX() const;
     int getPosY() const;
     char getColor() const;
-    string getIcono();
+    std::string getIcono();
     virtual bool confirmarMovimiento(int y, int x, CPieza* casilla) = 0;
 };
 
