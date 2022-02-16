@@ -1,10 +1,54 @@
 ﻿#include "Application.h"
 #include "Marquee1.h"
+#include "login/Include.h"
+
 
 int Application::run()
 {
-    init();
+    loginRegisterApp();
     return 0;
+}
+
+void Application::loginRegisterApp()
+{
+    std::vector<MenuOption> menu_item
+    {
+        {1, "Login", logearse},
+        {2, "Register", registrarse},
+        {3, "SALIR", exit_program}
+    };
+
+    Menu menu{ menu_item };
+    menu.navigation();
+}
+
+void Application::logearse()
+{
+    system("pause");
+    system("cls");
+    Login log;
+    if (log.login() == 1) {
+        init();
+    }
+    else {
+        cout << "Usuario Incorrecto" << endl;
+        Sleep(600);
+    }
+    loginRegisterApp();
+}
+
+void Application::registrarse()
+{
+    system("pause");
+    system("cls");
+    Login log;
+    if (log.sigin() == 1) {
+    }
+    else {
+        cout << "Usuario Incorrecto" << endl;
+        Sleep(600);
+    }
+    loginRegisterApp();
 }
 
 void Application::init()

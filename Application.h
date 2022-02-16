@@ -27,6 +27,9 @@ public:
 	static void estop();
 	static void cargarBackup();
 	static int run();
+	static void loginRegisterApp();
+	static void logearse();
+	static void registrarse();
 	
 };
 

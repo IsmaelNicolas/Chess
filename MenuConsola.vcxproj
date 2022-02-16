@@ -25,6 +25,9 @@
     <ClInclude Include="CPieza_Hijas.h" />
     <ClInclude Include="CTabla.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="login\Include.h" />
+    <ClInclude Include="login\Login.h" />
+    <ClInclude Include="login\Md5.h" />
     <ClInclude Include="Marquee1.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuOption.h" />
@@ -35,6 +38,8 @@
     <ClCompile Include="CPieza.cpp" />
     <ClCompile Include="CPieza_Hijas.cpp" />
     <ClCompile Include="CTabla.cpp" />
+    <ClCompile Include="login\Login.cpp" />
+    <ClCompile Include="login\Md5.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuOption.cpp" />
