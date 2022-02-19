@@ -1,23 +1,76 @@
 ﻿#include "Application.h"
 #include "Marquee1.h"
+<<<<<<< HEAD
 #include <Windows.h>
+=======
+#include "login/Include.h"
+>>>>>>> 53729ad15689531e97ecbdd0f3ad22f407db2e19
 
 
 int Application::run()
 {
-    init();
-
+    loginRegisterApp();
     return 0;
+}
+
+void Application::loginRegisterApp()
+{
+    std::vector<MenuOption> menu_item
+    {
+        {1, "Login", logearse},
+        {2, "Register", registrarse},
+        {3, "SALIR", exit_program}
+    };
+
+    Menu menu{ menu_item };
+    menu.navigation();
+}
+
+void Application::logearse()
+{
+    system("pause");
+    system("cls");
+    Login log;
+    if (log.login() == 1) {
+        init();
+    }
+    else {
+        cout << "Usuario Incorrecto" << endl;
+        Sleep(600);
+    }
+    loginRegisterApp();
+}
+
+void Application::registrarse()
+{
+    system("pause");
+    system("cls");
+    Login log;
+    if (log.sigin() == 1) {
+    }
+    else {
+        cout << "Usuario Incorrecto" << endl;
+        Sleep(600);
+    }
+    loginRegisterApp();
 }
 
 void Application::init()
 {
+<<<<<<< HEAD
     
     std::thread t1(Marquee::Marquee::transicion, " ESPE ");
     std::vector<MenuOption> menu_item
     {
         {1, "Jugar", OPC1},
         {2, "Configuraciones", OPC3},
+=======
+    std::thread t1(Marquee::Marquee::transicion, " Hello There ");
+    std::vector<MenuOption> menu_item
+    {
+        {1, "Partida Nueva", nuevoJuego},
+        {2, "Cargar Backup", cargarBackup},
+>>>>>>> 53729ad15689531e97ecbdd0f3ad22f407db2e19
         {3, "SALIR", exit_program}
     };
 
@@ -29,18 +82,30 @@ void Application::init()
 
 void Application::exit_program()
 {
+<<<<<<< HEAD
     std::cout << "\x1B[2J\x1B[H";
+=======
+    
+    system("cls");
+>>>>>>> 53729ad15689531e97ecbdd0f3ad22f407db2e19
     std::cout << "\n\nHasta la proxima\n\n";
-    Sleep(500);
+    Sleep(800);
     exit(0);
 }
 
+<<<<<<< HEAD
 void Application::OPC1() 
 {
     estop();
     //system("cls");
     std::cout << "Opc1"<<std::endl;
     system("pause");
+=======
+void Application::nuevoJuego() {
+    estop();
+    system("pause");
+    system("cls");
+>>>>>>> 53729ad15689531e97ecbdd0f3ad22f407db2e19
     
     CPartida prueba;
     prueba.ejecutarPartida();
@@ -48,9 +113,20 @@ void Application::OPC1()
     init();
 }
 
-/*PRESIONA TECLA ALT PARA DETENER MARQUESINA*/
+void Application::cargarBackup()
+{
+    estop();
+    system("pause");
+    system("cls");
+    CPartida back;
+    back.cargarBackup();
+    back.ejecutarPartida();
+    init();
+}
+
 void Application::estop()
 {
+/*PRESIONA TECLA ALT PARA DETENER MARQUESINA*/
     INPUT ip;
 
     // Set up a generic keyboard event.
@@ -69,6 +145,7 @@ void Application::estop()
     SendInput(1, &ip, sizeof(INPUT));
 }
 
+<<<<<<< HEAD
 void Application::OPC2()
 {
     estop();
@@ -100,3 +177,6 @@ void Application::OPC4()
     system("pause");
     init();
 }
+=======
+
+>>>>>>> 53729ad15689531e97ecbdd0f3ad22f407db2e19

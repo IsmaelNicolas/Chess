@@ -7,7 +7,6 @@
 #include <iostream>
 
 
-
 constexpr auto KEY_UP = 72;
 constexpr auto KEY_DOWN = 80;
 constexpr auto KEY_ENTER = 13;

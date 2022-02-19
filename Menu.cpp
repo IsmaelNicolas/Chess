@@ -113,6 +113,7 @@ bool Menu::usarMouse(size_t* i) {
 
             for (size_t i = 0; i < cajitas.size(); i += 2)
             {
+<<<<<<< HEAD
                 if (cursor_pos.y >= cajitas.at(i) &&
                     cursor_pos.y <= cajitas.at(i + 1) &&
                     cursor_pos.x >= 351 && cursor_pos.x <= 560)
@@ -123,6 +124,16 @@ bool Menu::usarMouse(size_t* i) {
                             menu_option_.at(((i / 2) + 1) - 1).get_fuction()();
                             return true;
                         }
+=======
+                if (cursor_pos.y >= cajitas.at(i) && cursor_pos.y <= cajitas.at(i + 1) && cursor_pos.x >= 351 && cursor_pos.x <= 560 ) {
+
+                    Sleep(500);
+                    display((i/2)+1);
+                    if (GetAsyncKeyState(VK_RBUTTON)) {
+                        menu_option_.at(((i / 2) + 1)-1).get_fuction()();
+                        return true;
+                    }
+>>>>>>> 53729ad15689531e97ecbdd0f3ad22f407db2e19
                 }
                 
             }
