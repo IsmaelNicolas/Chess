@@ -103,7 +103,7 @@ void Menu::display(size_t option)
 
 bool Menu::usarMouse(size_t* i) {
 
-           
+
     if (GetCursorPos(&cursor_pos))
     {
         if (console_wnd && ScreenToClient(console_wnd, &cursor_pos))
@@ -111,23 +111,24 @@ bool Menu::usarMouse(size_t* i) {
             std::wstring t = std::to_wstring(cursor_pos.x) + L"-" + std::to_wstring(cursor_pos.y);
             SetConsoleTitle(t.c_str());
 
-            for (size_t i = 0; i < cajitas.size(); i+=2)
+            for (size_t i = 0; i < cajitas.size(); i += 2)
             {
-                if (cursor_pos.y >= cajitas.at(i) && 
-                    cursor_pos.y <=cajitas.at(i + 1) && 
-                    cursor_pos.x >= 351 && cursor_pos.x <= 560) 
-                {   
-                    Sleep(150);
-                    display((i/2)+1);
-                    if (GetAsyncKeyState(VK_RBUTTON)) {
-                        menu_option_.at(((i / 2) + 1)-1).get_fuction()();
-                        return true;
-                    }
+                if (cursor_pos.y >= cajitas.at(i) &&
+                    cursor_pos.y <= cajitas.at(i + 1) &&
+                    cursor_pos.x >= 351 && cursor_pos.x <= 560)
+                {                   
+                        Sleep(450);
+                        display((i / 2) + 1);
+                        if (GetAsyncKeyState(VK_RBUTTON)) {
+                            menu_option_.at(((i / 2) + 1) - 1).get_fuction()();
+                            return true;
+                        }
                 }
+                
             }
             return false;
         }
-    }
 
+    }
 }
 

@@ -6,6 +6,9 @@
 #include <iomanip>
 #include <sstream>
 
+#include "Header.h"
+#include "CPartida.h"
+
 #include <thread>
 class Application
 {
@@ -21,6 +24,7 @@ public:
 
 	Application() {};
 	static void OPC1();
+	static void estop();
 	static void OPC2();
 	static void OPC3();
 	static void OPC4();
