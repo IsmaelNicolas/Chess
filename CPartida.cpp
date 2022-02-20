@@ -111,7 +111,8 @@ void CPartida::cargarBackupFile(string filename)
 
     i.close();
     this->tablero.cargarPiezas(filename);
-
+    system("cls");
+    system("pause");
     this->ejecutarPartida();
 }
 

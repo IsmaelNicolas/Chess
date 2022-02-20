@@ -5,7 +5,7 @@
 
 int Application::run()
 {
-    //loginRegisterApp();
+    loginRegisterApp();
     init();
     return 0;
 }
@@ -56,7 +56,7 @@ void Application::registrarse()
 
 void Application::init()
 {
-    //std::thread t1(Marquee::Marquee::transicion, " Hello There ");
+    std::thread t1(Marquee::Marquee::transicion, " Hello There ");
     std::vector<MenuOption> menu_item
     {
         {1, "Partida Nueva", nuevoJuego},
@@ -94,10 +94,11 @@ void Application::nuevoJuego() {
     
 void Application::cargarBackup()
 {
+    estop();
     system("cls");
     system("pause");
 
-    string dir = "C:\\Users\\usuario\\Documents\\GitHub\\Chess\\backups";
+    string dir = "backups";
 
     cout << "\n\n";
 
