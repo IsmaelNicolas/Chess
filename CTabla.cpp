@@ -1,4 +1,5 @@
 #include "CTabla.h"
+using namespace nlohmann;
 
 CTabla::CTabla() : tamX{ X }, tamY{ Y }, numPiezas{ 32 }{
     // Crear el array dinamico de punteros a CPieza
@@ -50,7 +51,7 @@ CTabla::~CTabla() {
 void CTabla::imprimirTabla() {
     // Crear matriz NO DINAMICA de strings y llenarlos con strings vacios
     string tabla[8][8];
-    for(int i=0; i<tamY; i++) {for(int j=0; j<tamX; j++) {tabla[i][j] = "";}}
+    for(int i=0; i<tamY; i++) {for(int j=0; j<tamX; j++) {tabla[i][j] = ":";}}
 
     // Insertar los iconos de las piezas en la matriz
     for(int i=0; i<numPiezas; i++) {
@@ -100,10 +101,18 @@ bool CTabla::posicionValida (string pos) const {
 
 
 CPieza* CTabla::buscarPieza(int y, int x){
+
+    //for (int i = 0; i < numPiezas; i++) {
+    //    cout << listaPiezas[i]->getIcono()<<" "<< listaPiezas[i]->getPosX()<< " " << listaPiezas[i]->getPosY() << endl;
+
+    //}
     for(int i=0; i<numPiezas; i++){
-        if (listaPiezas[i]->getPosY() == y and listaPiezas[i]->getPosX() == x)
-        {return listaPiezas[i];}
+        //cout << listaPiezas[i]->getIcono() << " " << listaPiezas[i]->getPosX() << " " << listaPiezas[i]->getPosY() << endl;
+        if (listaPiezas[i]->getPosY() == y and listaPiezas[i]->getPosX() == x){ 
+            return listaPiezas[i];
+        }
     }
+
     return nullptr;
 }
 
@@ -144,6 +153,37 @@ bool CTabla::moverPieza(int y1, int x1, int y2, int x2, bool turno) {
     casillaInicio->setPosY(y2);
     casillaInicio->setPosX(x2);
     return true;
+}
+
+void CTabla::cargarPiezas(string fileName) {
+    std::ifstream i2(fileName + "_1.json");
+    json j2;
+    i2 >> j2;
+
+    int i = 0;
+
+    for (json::iterator it = j2.begin(); it != j2.end(); ++it) {
+
+        listaPiezas[i]->posX = it.value()["posX"].get<int>();
+        listaPiezas[i]->posY = it.value()["posY"].get<int>();
+        listaPiezas[i]->color = it.value()["color"].get<char>();
+        listaPiezas[i]->icono = it.value()["icono"].get<string>();
+        i++;
+
+    }
+
+
+        //for (json::iterator it = j2.begin(); it != j2.end(); ++it) {
+        //    cout << it.value()["posX"].get<int>()<<" ";
+        //    cout << it.value()["posY"].get<int>() << " ";
+        //    cout << it.value()["color"].get<char>() << " ";
+        //    cout << it.value()["icono"].get<string>() << " ";
+        //    cout << it.value()["posX"].get<int>() << endl;
+        //    i++;
+        //}
+        //system("pause");
+    i2.close();
+
 }
 
 

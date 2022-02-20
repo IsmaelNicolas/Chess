@@ -5,7 +5,8 @@
 
 int Application::run()
 {
-    loginRegisterApp();
+    //loginRegisterApp();
+    init();
     return 0;
 }
 
@@ -51,9 +52,11 @@ void Application::registrarse()
     loginRegisterApp();
 }
 
+
+
 void Application::init()
 {
-    std::thread t1(Marquee::Marquee::transicion, " Hello There ");
+    //std::thread t1(Marquee::Marquee::transicion, " Hello There ");
     std::vector<MenuOption> menu_item
     {
         {1, "Partida Nueva", nuevoJuego},
@@ -75,26 +78,67 @@ void Application::exit_program()
     exit(0);
 }
 
+
 void Application::nuevoJuego() {
     estop();
     system("pause");
     system("cls");
     
-    CPartida prueba;
-    prueba.ejecutarPartida();
+    CPartida partida;
+    partida.ejecutarPartida();
+
 
     init();
+    
 }
-
+    
 void Application::cargarBackup()
 {
-    estop();
-    system("pause");
     system("cls");
-    CPartida back;
-    back.cargarBackup();
-    back.ejecutarPartida();
-    init();
+    system("pause");
+
+    string dir = "C:\\Users\\usuario\\Documents\\GitHub\\Chess\\backups";
+
+    cout << "\n\n";
+
+    vector <string> files;
+    WIN32_FIND_DATA findFileData;
+    HANDLE          hFind;
+    dir += "\\*";
+    // strcat(dir, "\\*");
+
+    hFind = FindFirstFile(dir.c_str(), &findFileData);
+
+    if (hFind == INVALID_HANDLE_VALUE)
+        std::cout << "Ruta incorrecta";
+    else
+    {
+        //std::cout << findFileData.cFileName << '\n'; //El primer fichero
+        files.push_back(findFileData.cFileName);
+        // Listamos todos los ficheros restantes
+        while (FindNextFile(hFind, &findFileData) != 0)
+            //std::cout << findFileData.cFileName << '\n';
+            files.push_back(findFileData.cFileName);
+    }
+    std::reverse(files.begin(), files.end());
+    files.pop_back();
+    files.pop_back();
+
+    int a = 1;
+
+    for (auto f : files) {
+        std::cout << a << ")" << f << std::endl;
+        a++;
+    }
+
+    cout << "Selecciona un numero: ";
+    cin >> a;
+    string fileName = files[a - 1];
+    fileName.resize(fileName.size() - 7);
+    cout << fileName;
+
+    CPartida partida; 
+    partida.cargarBackupFile("./backups/"+ fileName);
 }
 
 void Application::estop()

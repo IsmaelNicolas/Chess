@@ -1,4 +1,6 @@
 #include "CPartida.h"
+using namespace nlohmann;
+using ordered_json = nlohmann::ordered_json;
 
 CPartida::CPartida(): turno(true), opcion(0) {}
 
@@ -22,9 +24,6 @@ void CPartida::ejecutarMovimiento() {
 
 void CPartida::ejecutarPartida() {
     std::cout << endl << "INICIO DE LA PARTIDA" << endl;
-    std::string fileName = "partida.dat"; 
-    std::ofstream outputFile;
-    CPartida part{};
     do {
         tablero.imprimirTabla();
         std::cout << endl << "Turno de las piezas" << ' ' << (turno?"blancas":"negras") << '.';
@@ -36,73 +35,94 @@ void CPartida::ejecutarPartida() {
         cin >> opcion;
         switch(opcion) {
             case 0:
-                std::cout << endl << "Las piezas" << ' ' << (turno?"blancas":"negras") << ' ' << "se han rendido.";
-                turno = !turno;
-                anunciarGanador();
+                //std::cout << endl << "Las piezas" << ' ' << (turno?"blancas":"negras") << ' ' << "se han rendido.";
+                //turno = !turno;
+                //anunciarGanador();
                 break;
             case 1:
                 ejecutarMovimiento();
                 break;
             case 2:   
-                writeBinary(outputFile, *this, fileName);
+                hacerBackup();
                 break;
             default:
                 std::cout << endl << "Opcion NO VALIDA: Solo puede insertar 0 y 1.";
                 break;
         }
-    } while(opcion != 0 && opcion != 2);
-    std::cout << endl << endl << "FIN DE LA PARTIDA" << endl;
-
-
+    } while(opcion != 0 && opcion !=2 );
+    //std::cout << endl << endl << "FIN DE LA PARTIDA" << endl;
 
 }
 
-void CPartida::readBinary(std::string& fileName, CPartida& someoneElse)
-{
-
-    //std::ofstream outputFile;
-    //outputFile.open(fileName, std::ios::out| std::ios::binary);
+void CPartida::hacerBackup() {
 
 
-    std::ifstream inputFile;
-    inputFile.open(fileName.c_str(),std::ios::binary| std::ios::in);
-
-    if (!inputFile.eof())
+    string filename = "./backups/"+nombreFile();
+    json partidaPiezas;
+    string key;
+    int j = 10;
+    for (size_t i = 0; i < tablero.numPiezas; i++,j++)
     {
-        inputFile.read(reinterpret_cast<char*>(&someoneElse), sizeof(CPartida));
-        //inputFile.read((char*)&someoneElse, sizeof(CPartida));
-        //inputFile.close();
+        partidaPiezas[std::to_string(j)]["posX"] = tablero.listaPiezas[i]->getPosX();
+        partidaPiezas[std::to_string(j)]["posY"] = tablero.listaPiezas[i]->getPosY();
+        partidaPiezas[std::to_string(j)]["color"] = tablero.listaPiezas[i]->getColor();
+        partidaPiezas[std::to_string(j)]["icono"] = tablero.listaPiezas[i]->getIcono();
     }
-    else
-    {
-        std::cout << "No existe backup " + fileName;
-    }
-    inputFile.close();
-    //outputFile.close();
-}
 
+    std::ofstream file(filename+"_1" + ".json");
+    file << std::setw(4) << partidaPiezas << std::endl;
+    file.close();
 
-void CPartida::writeBinary(std::ofstream& outputFile, CPartida& someone, std::string& fileName)
-{
-    outputFile.open(fileName.c_str(), std::ios::out | std::ios::binary);
-    if (outputFile.is_open())
+    json partidaPosicion =
     {
-        outputFile.write(reinterpret_cast<char*>(&someone), sizeof(CPartida));
-        //outputFile.close();
-    }
-    else
-    {
-        std::cout << "No existe file " + fileName + "\n";
-    }
-    outputFile.close();
-}
-
-void CPartida::cargarBackup()
-{
+          {"opcion", opcion},
+          {"posOrigen", posOrigen},
+          {"posDestino", posDestino},
+          {"turno", turno},
+          {"tamX", tablero.tamX},
+          {"tamY", tablero.tamY},
+          {"numPiezas", tablero.numPiezas}
+    };
     
-    std::cout << "\n\n\tMenu de Backups" << std::endl;
-    std::string fileName = "partida.dat";
-    readBinary(fileName, *this);
-    
+    std::ofstream file2(filename + "_2" + ".json");
+
+    file2 << std::setw(4) << partidaPosicion << std::endl;
+    file2.close();
+
 
 }
+
+void CPartida::cargarBackupFile(string filename)
+{
+    string s = filename + "_2.json";
+    std::ifstream i(s);
+    json j;
+    i >> j;
+
+    this->tablero.numPiezas = j["numPiezas"].get<unsigned int>();
+    this->opcion = j["opcion"].get<int>();
+    this->posDestino = j["posDestino"].get<string>();
+    this->posOrigen = j["posOrigen"].get<string>();
+    this->tablero.tamX = j["tamX"].get<unsigned int>();
+    this->tablero.tamY = j["tamY"].get<unsigned int>();
+    this->turno = j["turno"].get<bool>();
+
+    
+
+    i.close();
+    this->tablero.cargarPiezas(filename);
+
+    this->ejecutarPartida();
+}
+
+string CPartida::nombreFile()
+{
+    auto end = std::chrono::system_clock::now();
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+    string s = string(std::ctime(&end_time));
+    std::replace(s.begin(), s.end(), ':', '-');
+    s.pop_back();
+
+    return s;
+}
+

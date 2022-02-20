@@ -107,8 +107,6 @@ bool Menu::usarMouse(size_t* i) {
     {
         if (console_wnd && ScreenToClient(console_wnd, &cursor_pos))
         {
-            std::wstring t = std::to_wstring(cursor_pos.x) + L"-" + std::to_wstring(cursor_pos.y);
-            SetConsoleTitle(t.c_str());
 
             for (size_t i = 0; i < cajitas.size(); i+=2)
             {
