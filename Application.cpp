@@ -56,17 +56,15 @@ void Application::registrarse()
 
 void Application::init()
 {
-    std::thread t1(Marquee::Marquee::transicion, " Hello There ");
+    std::thread t1(Marquee::Marquee::transicion, " ESPE INGENIERIA DE SOFTWARE ");
     std::vector<MenuOption> menu_item
     {
         {1, "Partida Nueva", nuevoJuego},
         {2, "Cargar Backup", cargarBackup},
         {3, "SALIR", exit_program}
     };
-
     Menu menu{ menu_item };
     menu.navigation();
-    
 }
 
 void Application::exit_program()
@@ -98,7 +96,10 @@ void Application::cargarBackup()
     system("cls");
     system("pause");
 
-    string dir = "backups";
+    _mkdir("C:\\Estructuras\\");
+    _mkdir("C:\\Estructuras\\backups");
+
+    string dir = "C:\\Estructuras\\backups";
 
     cout << "\n\n";
 
@@ -139,7 +140,8 @@ void Application::cargarBackup()
     cout << fileName;
 
     CPartida partida; 
-    partida.cargarBackupFile("./backups/"+ fileName);
+    partida.cargarBackupFile("C:\\Estructuras\\backups\\"+ fileName);
+    init();
 }
 
 void Application::estop()

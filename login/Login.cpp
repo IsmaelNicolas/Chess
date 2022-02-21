@@ -7,7 +7,7 @@ Map Login::read_file()
 	std::string user = "";
 	std::string pass = "";
 	std::ifstream file;
-	file.open("Users.csv");
+	file.open("C:\\Estructuras\\Users.csv");
 	if (!file)
 		return a;
 
@@ -27,7 +27,8 @@ Map Login::read_file()
 void Login::write_user(std::string user, std::string pass)
 {
 	std::ofstream users;
-	users.open("Users.csv", std::ios::app);
+	_mkdir("C:\\Estructuras\\");
+	users.open("C:\\Estructuras\\Users.csv", std::ios::app);
 
 	users << user << ";"<<pass<<"\n";
 

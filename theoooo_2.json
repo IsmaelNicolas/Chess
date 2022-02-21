@@ -1,0 +1,9 @@
+{
+    "numPiezas": 32,
+    "opcion": 2,
+    "posDestino": "",
+    "posOrigen": "",
+    "tamX": 8,
+    "tamY": 8,
+    "turno": true
+}

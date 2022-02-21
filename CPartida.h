@@ -1,11 +1,12 @@
 #ifndef CPARTIDA_H
 #define CPARTIDA_H
-
 #include "Application.h"
 #include "Header.h"
 #include "CTabla.h"
 #include <iostream>
 #include <fstream>
+#include<direct.h>
+
 class CPartida {
     int opcion;
     string posOrigen;

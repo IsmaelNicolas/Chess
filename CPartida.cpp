@@ -55,9 +55,9 @@ void CPartida::ejecutarPartida() {
 }
 
 void CPartida::hacerBackup() {
-
-
-    string filename = "./backups/"+nombreFile();
+    string filename = "C:\\Estructuras\\backups\\"+nombreFile();
+    _mkdir("C:\\Estructuras\\");
+    _mkdir("C:\\Estructuras\\backups");
     json partidaPiezas;
     string key;
     int j = 10;
@@ -94,6 +94,8 @@ void CPartida::hacerBackup() {
 
 void CPartida::cargarBackupFile(string filename)
 {
+    _mkdir("C:\\Estructuras\\");
+    _mkdir("C:\\Estructuras\\backups");
     string s = filename + "_2.json";
     std::ifstream i(s);
     json j;
@@ -122,6 +124,7 @@ string CPartida::nombreFile()
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
     string s = string(std::ctime(&end_time));
     std::replace(s.begin(), s.end(), ':', '-');
+    //std::replace(s.begin(), s.end(), ' ', '_');
     s.pop_back();
 
     return s;
